@@ -1,5 +1,5 @@
 import numpy as np
-from Plotter import DataSet, Plotter
+from plotter import DataSet, Plotter
 
 
 # SAMPLE CODE
