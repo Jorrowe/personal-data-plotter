@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class DataSet:
     def __init__(self, x, y, filepath="", sheet_name="", marker="o", point_size=5, color=(0,0,0), label="plot", x_errors=(0), y_errors=(0)):
         self.x = self.load_data(x, filepath, sheet_name)
