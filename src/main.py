@@ -1,29 +1,16 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from plotter import DataPlotter
-
-def loadData(filePath, sheetName):
-    df = pd.read_excel(filePath, sheetName)
-    return df["x"].values, df["y"].values
+import numpy as np
+from Plotter import DataSet, Plotter
 
 
-def main():
-    try:
-        x, y = loadData('test.xlsx', "Sheet4")
-        plotter = DataPlotter(x, y)
-        
-        plotter.plotData(point_size=10, name="Sample Data")
-        plotter.plotErrors()
-        plotter.plotCurveFit('poly', degree=2)
-        
-        plotter.setLabels(title="Sample Plot")
-        plotter.setLimits()
-        plotter.showPlot()
+# SAMPLE CODE
+intensity = np.array([100, 80, 60, 40, 20])
+green_data = DataSet(intensity, [0.833, 0.828, 0.817, 0.804, 0.753], color=(0,1,0), marker="o-", label="green")
+blue_data = DataSet(intensity, [1.469, 1.468, 1.468, 1.453, 1.425], color=(0,0,1), marker="o-", label="blue")
+violet_data = DataSet(intensity, [1.646, 1.646, 1.642, 1.635, 1.590], color=(0.49803921568, 0, 1), marker="o-", label="violet")
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-
-if __name__ == "__main__":
-    main()
+plotter = Plotter(title="Stopping Voltage vs Intensity of Light", xlabel="Intensity (%)", ylabel="Stopping voltage (V)")
+plotter.add_dataset([green_data, blue_data, violet_data])
+plotter.set_limits((0, 110), (0,2.5))
+plotter.plot_all()
+plotter.show_plot()
